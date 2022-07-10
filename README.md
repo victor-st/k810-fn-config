@@ -8,7 +8,7 @@ No installation or build is required, other than running the tool with a compati
 
 ## Web-based Usage
 
-No installation or build is required. Simply use a compatible web browser which supports the WebHID api to point to this project's GitHub Pages website at https://victor-st.github.io/k810-fn-config/pages/fn-config.html and then follow the on screen instructions.
+No installation or build is required. Simply use a compatible web browser which supports the WebHID api to point to this project's GitHub Pages website at https://victor-st.github.io/k810-fn-config/src/pages/fn-config.html and then follow the on screen instructions.
 
 ## Local Usage
 
