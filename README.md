@@ -69,10 +69,11 @@ The tool shows a simple html web page by default. I wanted it to be simple witho
 
 The tool runs with a couple of JavaScript files:
 
-- `src/lib/k810-webhid.ts` provides non-UI related util functions that call the WebHID API for the K810 keyboard device
-- `src/scripts/index.ts` contains UI util functions to show messages and to hide/show elements, etc., and it calls functions in `k810-webhid.ts`
+- `src/lib/k810-webhid.js` provides non-UI related util functions that call the WebHID API for the K810 keyboard device
+- `src/scripts/index.js` contains UI util functions to show messages and to hide/show elements, etc., and it calls functions in `k810-webhid.js`
 
-Even though the files have a `.ts` extension, they contain plain JavaScript and not TypeScript at the moment to keep things simple. The `.ts` extension is used only to help with better type checking and auto-complete/suggest in VSCode IDE.
+~~Even though the files have a `.ts` extension, they contain plain JavaScript and not TypeScript at the moment to keep things simple. The `.ts` extension is used only to help with better type checking and auto-complete/suggest in VSCode IDE.~~
+The files have been switched back to `.js` extension for now so that they work in GitHub pages.
 
 ### Safari Browser
 
