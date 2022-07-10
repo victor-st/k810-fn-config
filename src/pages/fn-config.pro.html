@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<script src='../lib/k810-webhid.ts'></script>
+<script src='../scripts/index.ts'></script>
+<link rel="stylesheet" href="../styles/index.css">
+
+<body class="dark" onload="openKeyboardIfAlreadyGrantedAccess()" onunload="closeKeyboard()">
+  <div class="row">
+    <a href="./fn-config.html">Show Fn Config - Simple</a>
+
+    <label>
+      <input type="checkbox" checked onchange="toggleTheme(this)">
+      <span>Dark Theme</span>
+    </label>
+  </div>
+  <p></p>
+
+  <button id="access-btn" onclick="requestKeyboardAccess()">Access K810 Keyboard</button>
+
+  <div id="contents" class="hidden">
+    <button onclick="revokeKeyboardAccess()">Revoke Keyboard Access</button>
+    <p></p>
+
+    <label>
+      <input id="enableFn-cb" type="checkbox" onchange="setFnEnable(this)">
+      <span>Enable K810 Fn keys</span>
+    </label>
+    <p></p>
+
+    <div>Fn keys default: <span id="fn-state">unknown</span></div>
+
+    <div>Report Data: <span id="report-value"></span></div>
+  </div>
+  <hr>
+  <div id="msg-text"></div>
+</body>
+
+</html>
