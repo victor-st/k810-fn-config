@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script src='../lib/k810-webhid.ts'></script>
+<script src='../scripts/index.ts'></script>
+<style>
+  body {
+    max-width: 40rem;
+    margin: 2rem auto;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+
+<body onload="openKeyboardIfAlreadyGrantedAccess()" onunload="closeKeyboard()">
+  <div>
+    <a href="./fn-config.pro.html">Show Fn Config - Pro</a>
+  </div>
+  <p></p>
+
+  <button id="access-btn" onclick="requestKeyboardAccess()">Access K810 Keyboard</button>
+
+  <div id="contents" class="hidden">
+    <label>
+      <input id="enableFn-cb" type="checkbox" onchange="setFnEnable(this)">
+      <span>Enable K810 Fn keys</span>
+    </label>
+    <p></p>
+
+    <div>Fn keys default: <span id="fn-state">unknown</span></div>
+  </div>
+  <hr>
+  <div id="msg-text"></div>
+</body>
+
+</html>

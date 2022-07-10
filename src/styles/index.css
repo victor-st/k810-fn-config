@@ -1,0 +1,150 @@
+/* css styles for fn-config.pro ui */
+
+:root {
+  --color-theme-lite-background: rgb(183, 201, 215);
+  --color-theme-dark-background: rgb(34, 65, 89);
+  --color-theme-dark-foreground: rgb(205, 210, 214);
+
+  --color-comp-blue: #006cbe;
+  --color-comp-blue-background: #c0d2e0;
+
+  --color-msg-success: #209020;
+  --color-msg-info: #0085ff;
+  --color-msg-error: #c00020;
+}
+
+/* dark/lite themes */
+body {
+  background: var(--color-theme-lite-background);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2rem auto;
+  max-width: 40rem;
+}
+
+.dark,
+.dark a {
+  background: var(--color-theme-dark-background);
+  color: var(--color-theme-dark-foreground);
+}
+
+.success {
+  color: var(--color-msg-success);
+}
+
+.info {
+  color: var(--color-msg-info);
+}
+
+.error {
+  color: var(--color-msg-error);
+}
+
+/* layout classes */
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Button component */
+button {
+  background-color: var(--color-comp-blue);
+  border: 2px solid var(--color-comp-blue-background);
+  border-radius: 2rem;
+  color: white;
+  cursor: pointer;
+  margin: 0 0.25rem;
+  padding: 0.5rem;
+  width: 12rem;
+}
+button.disabled {
+  background-color: lightgrey;
+}
+button:hover {
+  outline: 2px solid var(--color-comp-blue);
+  filter: brightness(80%);
+}
+button:focus {
+  outline: 2px solid var(--color-comp-blue);
+}
+button:active {
+  filter: brightness(120%);
+}
+
+/* Toggle switch/checkbox component */
+label > input[type="checkbox"] + span {
+  cursor: pointer;
+  position: relative;
+  margin-right: 0.5rem;
+  padding-right: 3rem;
+  white-space: nowrap;
+}
+
+label input[type="checkbox"]:focus,
+label input[type="checkbox"] {
+  outline: none;
+  opacity: 0;
+  margin: 0;
+  width: 0;
+}
+
+/* Toggle switch's oval border */
+label > input[type="checkbox"] + span::before {
+  content: "";
+  background-color: white;
+  border: 2px solid var(--color-comp-blue-background);
+  border-radius: 1rem;
+  padding: 2px;
+  height: calc(1rem - 8px);
+  width: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 1px;
+}
+label > input[type="checkbox"]:hover + span::before {
+  border: 2px solid var(--color-comp-blue-background);
+  filter: brightness(90%);
+}
+label > input[type="checkbox"]:focus + span::before {
+  border: 2px solid var(--color-comp-blue);
+}
+
+/* Toggle switch's circle */
+label > input[type="checkbox"] + span::after {
+  content: "";
+  background-color: grey;
+  border: 2px solid grey;
+  border-radius: 1rem;
+  position: absolute;
+  top: -1px;
+  right: calc(0.5rem + 6px);
+  height: 1rem;
+  width: 1rem;
+}
+label > input[type="checkbox"]:checked + span::after {
+  background-color: var(--color-comp-blue);
+  border: 2px solid var(--color-comp-blue);
+  right: -2px;
+}
+
+/*  */
