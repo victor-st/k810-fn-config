@@ -96,7 +96,28 @@ For WebHID debugging, Chromium browsers understand the `about://device-log` URL 
 
 One more note is about the `Enable Fn` toggle being always set to "Enabled" on initial startup. It's done that way because the current WebHID api does not have a way to query input report data from the keyboard initially (see https://github.com/WICG/webhid/issues/94). The Enable Fn toggle state does get updated accordingly if an input report event arrives when the keyboard is sent the corresponding output report request (e.g. clicking the Enable Fn toggle) in any web browser session. And the tool also sets the keyboard automatically (based on the current toggle value) when the keyboard is switched on or reconnects. However, if the Enable Fn toggle is changed while the keyboard is disconnected and multiple tool browser sessions are opened, the toggles in different web browser sessions can get out of sync. And since the tool has no way to query the current Fn state from the keyboard when it is reconnected, the tool may set the keyboard's Fn state to an unexpected value based on the toggle value of a random session.
 
-### Issues
+## Linux, Chromium, and NotAllowedError Workarounds
+
+1. For Ubuntu Snap Chromium browser that raises NotAllowedError error accessing WebHID devices, start Chromium "unsnapped" using this command:
+
+    `/snap/chromium/current/usr/lib/chromium-browser/chrome --user-data-dir=~/ChrUnsnapped --class="ChrUnsnapped"`
+
+    ref: https://stackoverflow.com/questions/78377071/ubuntu-snap-chromium-cant-access-webhid
+
+2. For NotAllowedError error accessing WebHID devices on Ubuntu (or other Unix/Linux systems), need to add a new udev rule for the K810 keyboard because HID devices are read-only by default.
+
+    `KERNEL=="hidraw*", SUBSYSTEM=="hidraw", KERNELS=="0005:046D:B319.*", MODE="0660", GROUP="plugdev"`
+
+    ref: https://developer.chrome.com/docs/capabilities/hid#dev-tips
+
+    In case the above still does not work, a quick and dirty workaround (not recommended) is:
+
+    `sudo chmod 666 /dev/hidraw*`
+
+    ref: https://stackoverflow.com/questions/30983221/chrome-app-fails-to-open-usb-device
+
+
+## Issues
 
 1. Sometimes the `Access K810 Keyboard` button may fail to open the device. I've not tracked down if this is an issue with the tool or the WebHID API. Once the device open error happens, the browser process must be restarted in order to work around and clear the error. `Tip:` Since the tool also works in Edge browser and I don't usually use Edge for browsing or for work, I run the tool mainly in Edge and can restart Edge any time in case the error happens without loosing my browsing tabs in Chrome and Firefox.
 
