@@ -100,22 +100,24 @@ One more note is about the `Enable Fn` toggle being always set to "Enabled" on i
 
 1. For Ubuntu Snap Chromium browser that raises NotAllowedError error accessing WebHID devices, start Chromium "unsnapped" using this command:
 
-    `/snap/chromium/current/usr/lib/chromium-browser/chrome --user-data-dir=~/ChrUnsnapped --class="ChrUnsnapped"`
+        /snap/chromium/current/usr/lib/chromium-browser/chrome --user-data-dir=.chromium-unsnapped --class="chromium-unsnapped"
 
-    ref: https://stackoverflow.com/questions/78377071/ubuntu-snap-chromium-cant-access-webhid
+    - https://stackoverflow.com/questions/78377071/ubuntu-snap-chromium-cant-access-webhid/78377098#78377098
+    - https://askubuntu.com/questions/1033344/how-to-give-snaps-access-to-somedir/1296762#1296762
 
-2. For NotAllowedError error accessing WebHID devices on Ubuntu (or other Unix/Linux systems), need to add a new udev rule for the K810 keyboard because HID devices are read-only by default.
+2. For avoiding `NotAllowedError` error accessing WebHID devices on Ubuntu or other Unix/Linux systems, it needs to add a new udev rule for the K810 keyboard because HID devices on Linux are read-only by default.
 
-    `KERNEL=="hidraw*", SUBSYSTEM=="hidraw", KERNELS=="0005:046D:B319.*", MODE="0660", GROUP="plugdev"`
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", KERNELS=="0005:046D:B319.*", MODE="0660", GROUP="plugdev"
 
-    ref: https://developer.chrome.com/docs/capabilities/hid#dev-tips
+    - https://developer.chrome.com/docs/capabilities/hid#dev-tips
+    - https://github.com/tomayac/joy-con-webhid/issues/3#issuecomment-944427792
 
-    In case the above still does not work, a quick and dirty workaround (not recommended) is:
+    In case the above still does not work, a quick and dirty workaround is like below, although not recommended:
 
-    `sudo chmod 666 /dev/hidraw*`
+        sudo chmod 666 /dev/hidraw*
 
-    ref: https://stackoverflow.com/questions/30983221/chrome-app-fails-to-open-usb-device
-
+    - https://stackoverflow.com/questions/30983221/chrome-app-fails-to-open-usb-device#comment119617286_32076908
+    - https://askubuntu.com/questions/15570/configure-udev-to-change-permissions-on-usb-hid-device/411480#411480
 
 ## Issues
 
